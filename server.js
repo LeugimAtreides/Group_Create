@@ -41,7 +41,7 @@ runProgram = () => {
                 name: "welcome",
                 type: "list",
                 message: "Choose an option",
-                choices: ["View Roster", "View Groups", "Create Groups"]
+                choices: ["View Roster", "View Groups", "Create Groups", "Exit"]
             }
         ])
         .then(function (answer) {
@@ -55,6 +55,8 @@ runProgram = () => {
                 case "Create Groups":
                     // Function for creating groups
                     break;
+                case "Exit":
+                // Function for exiting program
                 default:
                     runProgram();
                     break;
@@ -80,9 +82,9 @@ viewRoster = () => {
                 .prompt([
                     {
                         name: "studentActions",
-                        message: "Select An Option To Alter Student Data",
+                        message: "Select An Action To Perform On This Student",
                         type: "list",
-                        choices: ["Add Attribute", "Change Attribute", "Insert Into Group", "Remove From Group"]
+                        choices: ["Add Attribute", "Change Attribute", "Insert Into Group", "Remove From Group", "Exit"]
                     }
                 ])
                 .then(function (answer) {
@@ -98,6 +100,9 @@ viewRoster = () => {
                             break;
                         case "Remove From Group":
                             // Remove Student From Group Function
+                            break;
+                        case "Exit":
+                        // Function to end program
                         default:
                             viewRoster();
                             break;
@@ -117,6 +122,29 @@ viewGroups = () => {
                 choices: groups
             }])
         .then(function (answer) {
-            console.table(answer.groups)
+            console.table(answer.group)
+            inquirer
+                .prompt([
+                    {
+                        name: "groupActions",
+                        message: "Select An Action To Perform On This Group",
+                        type: "list",
+                        choices: ["Add Member", "Remove Member", "Exit"]
+                    }
+                ])
+                .then(function (answer) {
+                    switch (answer.groupActions) {
+                        case "Add Member":
+                            // Function to add student to group
+                            break;
+                        case "Remove Member":
+                            // Function to remove student from group
+                            break;
+                        case "Exit":
+                        // Function to exit program
+                        default:
+                            break;
+                    }
+                })
         })
 }
